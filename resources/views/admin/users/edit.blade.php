@@ -1,22 +1,16 @@
 @extends('admin.layouts.app')
-@section('title')
-    EDIT
-@endsection
+
+@section('title', 'Editar o Usuário')
 
 @section('content')
-    <h1>Editar Usuário</h1>
-
-    <x-alert></x-alert>
-
+    @include('admin.users.partials.breadcrumb')
+    <div class="py-6">
+        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight mb-4">
+            Editar o Usuário {{ $user->name }}
+        </h2>
+    </div>
     <form action="{{ route('users.update', $user->id) }}" method="POST">
-        @csrf()
-        @method('PUT')
-        
-        <input name="name" type="text" placeholder="Nome" value="{{ $user->name }}">
-        <input name="email" type="email" placeholder="E-mail" value="{{ $user->email }}">
-        <input name="password" type="password" placeholder="Password">
-
-        <button type="submit">Salvar</button>
+        @method('put')
+        @include('admin.users.partials.form')
     </form>
 @endsection
- 
